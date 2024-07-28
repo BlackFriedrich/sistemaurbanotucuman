@@ -1,0 +1,38 @@
+---
+title: "Untitled"
+author: "Federico Córdoba"
+date: "2024-07-26"
+output: html_document
+---
+
+```{r}
+library(sf)
+library(dplyr)
+library(mapview)
+```
+
+recurso https://www.youtube.com/watch?v=xBfuGQTAkuw para recortar 
+```{r}
+baseurl <- "http://vport.herrera.unt.edu.ar:8894/geoserver/wfs?"
+wfs_request <- "request=GetFeature&service=WFS&version=2.0.0&typeName=espacio01:tuc_juris&outputFormat=application/json"
+
+fi_regions_wfs <- paste0(baseurl,wfs_request)
+```
+
+```{r}
+fi_regions <- st_read(fi_regions_wfs)
+```
+```{r}
+mapview(fi_regions, label = fi_regions$name, color = "darkgreen", col.regions = "green", alpha.regions = .05)
+```
+
+```{r}
+jurisdiccion <- fi_regions %>% 
+  filter(juris == "MUN. DE FAMAILLA")
+```
+
+
+```{r}
+mapview(jurisdiccion, label = jurisdiccion$name, color = "darkgreen", col.regions = "green", alpha.regions = .05)
+```
+
