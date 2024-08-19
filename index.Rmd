@@ -1,0 +1,31 @@
+---
+title: "Sistema Urbano Tucuman"
+description: |
+  Aportes para un análisis comparativo entre municipios
+site: distill::distill_website
+---
+
+Este proyecto aborda el Sistema Urbano Territorial de Tucumán a partir del reconocimiento de los elementos determinantes en las estructuras urbanas municipales; recopilando y procesando información relevante a partir de fuentes open data que nutran los trabajos de investigación de los que forma parte:
+
+PIUNT AU B704 - "AGENDA URBANA EN LA PROVINCIA DE TUCUMAN. Herramientas para fortalecer la capacidad local de gestión" (FAU UNT) 
+
+Tesis de Maestría - "Categorizaciónes del suelo ocioso en el caso del área metropolitana de Tucumán" (MEU UTDT) 
+
+Autor: Arq. Federico Carlos Córdoba (fdrccc91@gmail.com)
+
+* Observatorio de Fenómenos Urbanos y Territoriales (OFUT) 
+* Facultad de Arquitectura y Urbanismo, Universidad Nacional de Tucumán (FAU-UNT)
+* Maestría en Economía Urbana, Universidad Torcuato DiTella (MEU-UTDT)
+
+Palabras Claves: *Planificación Urbana, Crecimiento Urbano, Agenda Municipal*
+
+ABSTRACT:
+
+La investigación plantea abordar el Sistema Urbano Territorial de Tucumán a partir de reconocer los elementos determinantes en las estructuras urbanas municipales, problematizando las cuestiones asociadas al crecimiento urbano, los usos del suelo, el desarrollo de centralidades urbanas y las infraestructuras de acceso a las mismas. Se propicia la construcción de información para un análisis territorial con énfasis en la vinculación de las actividades productivas urbanas al uso del suelo y las capacidades de desarrollo municipal. En el ámbito académico aporta en la integración de las funciones de la universidad con su ámbito de referencia aportando a la comprensión del mismo. 
+
+
+Se consideran todos los municipios de la provincia comparando información georeferenciada que permita la generación de indicadores económico-espaciales que den cuenta de la estructura urbana de los municipios, como de dinámicas que acentúan o limitan los modelos de crecimiento alcanzados por los aglomerados.
+
+Se analizan los procesos de aglomeración y expansión y el balance entre las ganancias por economías de aglomeración y amenidades, por un lado, y las pérdidas por costos de congestión, por el otro.
+En Tucumán, las agendas municipales enfrentan el desafío de generar infraestructuras de abastecimiento y sistemas de coordinación eficientes, que permitan mantener niveles adecuados de vida, sin perder de vista las amenazas del cambio climático y las vulnerabilidades sociales.
+

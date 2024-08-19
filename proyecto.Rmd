@@ -1,0 +1,127 @@
+---
+title: "Sistema Urbano Territorial"
+description: |
+  Desarrollo del trabajo de Investigación
+author:
+  - name: Federico Córdoba 
+    url: https://blackfriedrich.github.io/spatialdataportal/blackfriedrich.html
+    affiliation: OFUT-FAU-UNT
+    affiliation_url: https://www.observatoriofau.com.ar/
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+*"Las ciudades brindan oportunidades de aumentos de productividad y bienestar/inclusión en la medida que estas pueden generar un buen balance entre ganancias por economías de aglomeración y amenidades, por un lado, y pérdidas por costos de congestión, por el otro."*
+
+
+## Introducción
+
+El reconocimiento de las estructuras urbanas de los municipios en el Sistema Urbano Territorial de Tucumán da cuenta de los proceso asociados al crecimiento urbano, los usos del suelo, el desarrollo de amenidades (centralidades urbanas) y las infraestructuras de acceso a las mismas. 
+
+La información recopilada y procesada sirve a un análisis territorial que busca evidenciar cómo las dinámicas productivas influyen en la estructura urbana de las urbanizaciones.
+
+Los aportes de este trabajo en conjunto con otros, propios de los trabajos de las investigaciones vinculadas, contribuyen al desarrollo del conocimiento y el fortalecimiento de las capacidades de gestión local asociadas a la planificación urbana, a partir de la provisión de información que facilita el estudio y la comprensión del territorio.
+
+Entre los aportes que se realizan para los trabajos de investigación pertinentes se encuentran:
+
+- La recopilación de información de fuentes con datos abiertos.
+- El procesamiento de información que sirva a la construcción de un atlas municipal.
+- El desarrollo de técnicas que faciliten la adquisición, manipulación y visualización de la información.
+- El desarrollo de abordajes conceptuales que de un marco a la comprensión y reflexion de los procesos que se investigan.
+
+## Consideraciones Previas
+
+### Suelo Urbano
+
+Fracción del territorio que presentan condiciones propicias para el desarrollo de actividades urbanas: infraestructuras, servicios básicos, equipamientos, condiciones de aglomeración y diversidad de actividades.
+
+### Estructura Urbana
+
+Es la organización espacial de una ciudad, es decir, la forma en que se distribuyen y relacionan entre sí los diferentes elementos que la componen: la trama urbana, los usos del suelo, la densidad, la altura de los edificios, los espacios públicos y La infraestructuras.
+
+Influye en muchos aspectos de la vida cotidiana, como ser:
+
+- La movilidad: Cómo nos desplazamos de un lugar a otro.
+- La accesibilidad: La facilidad con la que podemos llegar a los servicios y equipamientos.
+- La calidad de vida: El ambiente en el que vivimos y trabajamos.
+- El desarrollo económico: La ubicación de las actividades productivas.
+
+### Sitema Territorial
+
+Es el conjunto de elementos naturales, sociales, económicos y culturales que interactúan entre sí en un espacio geográfico determinado (unidad de análisis). Es una forma de entender el territorio como un sistema complejo y dinámico, donde todos los elementos están interconectados y se influyen mutuamente.
+
+En el Sistema Urbano Territorial de Tucumán nos referimos a cómo los centros urbanos de la provincia se interrelacionan entre sí y con otros elementos territoriales que forman parte del sistema.
+
+## Hipótesis
+
+La forma de las ciudades y sus dinámicas de crecimiento pueden ser explicadas a partir de la comprensión de las dinámicas económicas subyacentes en la estructura urbana, organizadas entorno a uno o múltiples centros de mayor densidad (CBD*) y un borde de baja densidad, que se presenta como un límite cuando el valor de la tierra productiva agrícola es mayor al valor de la transformación de ese suelo a urbano.  
+
+*CBD son las siglas en inglés de Central Business District, que en español se traduce como Distrito Central de Negocios. Es el corazón económico de una ciudad, el área donde se concentran las actividades comerciales, financieras y administrativas más importantes.
+
+## Objetivos
+
+Cómo objetivo principal se pretente la generación de una cartografía temática especializada por municipio, que permita la interpretación de los procesos urbanos a partir de sus elementos estructurantes.
+
+Cómo objetivos específicos se encuentran, (1) El desarrollo de la técnica para la adquisición, limpieza y visualización de los datos; (2) La construcción de una base de datos con la información procesada y limpia; (3) La presentación de un Atlas preliminar, que nutra al proyecto de investigación de "Agenda Urbana" que cuenta con su propio atlas; (4) Una construcción teórica y metodológica para la comprensión de la tarea resuelta; (5) La articulación del presente trabajo con otros trabajos tanto de investigación como de práctica profesional.
+
+## Metodología
+
+A partir de las reflexiones en torno a la información requerida y disponible, y superados los desafíos técnicos que conlleva su adquisición y procesamiento, el proceso de toma de decisiones fue configurando la siguiente propuesta metodológica en torno a la construcción del presente proyecto.
+
+### Selección de Información
+
+límites Jurisdiccionales, Estructura Parcelaria, Edificabilidad, Estructura vial, Aménidades urbanas.
+
+### Selección de Fuentes
+
+Idet: Geoservicios: Catastro, Instituto de Geografía, RIDES
+Información de Google, (link web) Open street map.
+
+
+### Selección del formato de presentación
+
+Formato BLog .
+
+### Selección de herramientas de trabajo
+
+Qgis
+Rstudio / Distill Format. + librerias xD
+G. drive
+
+### Análisis de Datos
+
+#### Data Ingestión
+
+Creación de Entornos
+Importaciones WEB
+Alojamientos en la Computadora
+
+#### Data Wrangling
+
+Recorte de unidades de interés
+BBOX - Interesecciones
+generación de rmd para la limpieza :V ... /Ensayor R studio/ 
+APARTADO DE RMD QUE Limpia los datos :V ....
+Alojamiento de la información (organización de carpetas)# Reflecciones :V ...
+Reelink de capas a los mapas XD....
+
+#### DAta Visualization
+
+Mapas estáticos
+Mapas dinámicos
+Customizacion.
+
+## Desafios y Hallazgos
+
+Prueba y error :V 
+
+
+
+
+
+
+
+
+
+
+

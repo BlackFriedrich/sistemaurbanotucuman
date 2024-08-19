@@ -1,0 +1,24 @@
+name: "sistemaurbanotucuman"
+title: "Sistema Urbano Tucuman"
+description: |
+  &quot;sistemaurbanotucuman&quot;
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Proyecto"
+      href: proyecto.html
+    - text: "Atlas_Municipal"
+      menu:
+        - text: "Las Talitas"
+          href: Talitas.html
+        - text: "Famaillá"
+          href: Famaillá.html
+    - text: "Sistema_Provincial"
+      href: Sistema_Provincia.html
+    - text: "Conclusiones"
+      href: Conclusiones.html
+    - text: "Teoría"
+      href: Teoría.html
+    - text: "Notas"
+      href: Notas.html
+output: distill::distill_article
