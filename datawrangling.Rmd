@@ -1,0 +1,64 @@
+---
+title: "Procesamiento de Datos Municipales"
+description: |
+  A new article created using the Distill format.
+author:
+  - name: Federico Córdoba 
+    url: https://blackfriedrich.github.io/spatialdataportal/blackfriedrich.html
+    affiliation: OFUT-FAU-UNT
+    affiliation_url: https://www.observatoriofau.com.ar/
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+Un * al final indica que se ha alojado un dato en el ordenador como producto resultante.
+
+# Unidad de trabajo
+
+### Importación de la data de Municipios y Comunas
+
+### Intersección de la unidad municipio *
+
+### Creación de bbox municipio *
+
+-------------------------------------------
+
+# Objetos OSM
+
+### Importación de objetos OSM (bbox): Calles_bboxmunicipio * AAAA
+
+### Importación de objetos OSM (bbox): Amenities_bbox municipio * AAAA
+
+--------------------------------------------------------------
+
+### Intersección de objetos OSM (Municipio): Calles_municipio *
+
+### Intersección de objetos OSM (Municipio): Amenities_municipio *
+
+-----------------------------
+
+# Objetos alojados en el ordenador
+
+### Importación e intersección de capa parcelaria (bbox): parecelas_bboxmunicipio *
+
+### Importación  e intersección de capa parcelaria (municipio): parecelas_municipio *
+
+------------------
+
+### Importación e intersección de capas edificación (bbox): parecelas_bboxmunicipio *
+
+### Importación  e intersección de capas edificación (municipio): parecelas_municipio *
+
+-----------------
+
+# Visualizaciones:
+
+### GGplot: s/bbox | nube de puntos de edificaicón + estructura vial + parcelario + aménitis. Vista Online en blog
+
+### GGplot: s/bbox | poligonos de edificación + estructura vial + parcelario + aménitis. Descarga Online o PDF *
+
+
+### Leaflet o Mapviwe: s/Municipio | poligonos de edificación + estructura vial + parcelario + aménitis. Vista Online en blog
+
+
+

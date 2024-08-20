@@ -68,48 +68,86 @@ Cómo objetivos específicos se encuentran, (1) El desarrollo de la técnica par
 
 A partir de las reflexiones en torno a la información requerida y disponible, y superados los desafíos técnicos que conlleva su adquisición y procesamiento, el proceso de toma de decisiones fue configurando la siguiente propuesta metodológica en torno a la construcción del presente proyecto.
 
+Cómo punto de partida para en análisis de la información empezamos realizando las siguientes consideraciones:
+
 ### Selección de Información
 
-límites Jurisdiccionales, Estructura Parcelaria, Edificabilidad, Estructura vial, Aménidades urbanas.
+Para la comprensión de la estructura urbana, en el abordaje de los temás propuestos se consideraron, para esta primera etapa:
+
+Los límites jurisdiccionales: que determinan las unidades de análisis; 
+
+Estructura Parcelaria: que da cuenta de los usos del suelo y los procesos de urbanización subyacentes.
+
+Edificabilidad: correlativo a los usos del suelo, devela condiciones de densidad de ocupación y ociosidad del suelo, relativo a las formas de producción de suelo urbano, y condiciones del suelo: valorización, aptitud constructiva, normativas.
+
+Estructura vial: conforma la trama de la ciudad: calles y manzanas, escenciales para permitir el acceso a bienes, servicios e infraestructuras de las funciones urbanas. 
+
+Aménidades urbanas: reflejan las áreas de mayor valor, que canalizan los flujos y requieren condiciones especiales acceso.
 
 ### Selección de Fuentes
 
-Idet: Geoservicios: Catastro, Instituto de Geografía, RIDES
-Información de Google, (link web) Open street map.
+Se Optó por las siguientes fuentes:
 
+Para límites jurisdiccionales: [Instituto de Geografía](https://www.filo.unt.edu.ar/ieg/?page_id=963)
+
+Para el Parcelario: Catastro de Tucumán | [Geoservicios IDET](https://idet.tucuman.gob.ar/servicios_organismos/servicios_organismos/15/2)
+
+Edificabilidad: [Google Open Buildings](https://sites.research.google/open-buildings/)
+
+Estructura Vial: [Open street map](https://wiki.openstreetmap.org/wiki/Map_features)
+
+Aménidades urbanas: [Open street map](https://wiki.openstreetmap.org/wiki/Map_features)
 
 ### Selección del formato de presentación
 
-Formato BLog .
+Se optó por una presentación tipo Blog que separe la visual según relevancia del información, distinguiendo la presentación general, de la construcción teórica y los productos.
 
 ### Selección de herramientas de trabajo
 
-Qgis
-Rstudio / Distill Format. + librerias xD
-G. drive
+A partir de los requerimientos antes mencionados se consideró como herramienta principal el sowftware (Entorno de Desarrollo Integrado) Rstudio, que permite a partir del lenguaje de programación R, el analisis y visualización de inforamción: datos estadisticos, datos geográficos y visualizaciones en formato web (Distill). 
+
+De forma complementaria para la importación y procesamiento de algunos datos se trabajó con QGis. 
+
+Y para el alojamiento de la información se propiciaron plataformas online como Github y google Drive.
 
 ### Análisis de Datos
 
-#### Data Ingestión
+#### Data Ingestión | Importación de los datos
 
-Creación de Entornos
-Importaciones WEB
-Alojamientos en la Computadora
+Se investigaron múltiples opciones de importación y procesamiento de la información en función de la compatibilidad de las herramientas con los servidores que alojaban los datos y el tamaño de los mismos.
 
-#### Data Wrangling
+1 - Organización del almacenamiento de datos: Creación del Proyecto de Rstudio alojado en el ordenador y vinculado al repositorios Github, Creación del Blog utilizando la herramienta Distill definiendo la estructura de los datos del Blog, creación de un sitio en Google Drive para el almacenamiento de las capas finales, e Identificación de una carpeta de cache, donde procesar la información temporal.
 
-Recorte de unidades de interés
-BBOX - Interesecciones
-generación de rmd para la limpieza :V ... /Ensayor R studio/ 
-APARTADO DE RMD QUE Limpia los datos :V ....
-Alojamiento de la información (organización de carpetas)# Reflecciones :V ...
-Reelink de capas a los mapas XD....
+2 - Importación de los datos
 
-#### DAta Visualization
+Para límites jurisdiccionales: Rstudio (Serivicio WFS).
 
-Mapas estáticos
-Mapas dinámicos
-Customizacion.
+Para el Parcelario: QGis (Serivicio WFS).
+
+Edificabilidad: Descarga Online y procesamiento con Rstudio.
+
+Estructura Vial: Rstudio (Serivicio OSM)
+
+Aménidades urbanas: Rstudio (Serivicio OSM)
+
+#### Data Wrangling | Limpieza de los datos
+
+A partir de múltiples ensayos con la información se definió una metodología en torno a las unidades municipales, que establezan:
+
+A - Una visualización estática sobre un rectángulo de coordenadas geoespaciales de vista online.
+B - Una visualización estática sobre un rectángulo de coordenadas de descarga en PDF tamaño A3, de vista online y accesible en una presentación en papel (escala a definir para cada municipio)
+B - Una visualización dinámica sobre la unidad municipal, vista online.
+C - Dataset de información ordenada recopilada para cada municipio.
+
+Para los datos parcelarios, ya que los mísmos no se podían importar de forma correcta en Rstudio, ni completa en Qgis, se descargaron parcialmente con Qgis y se limpiaron en Rstudio, para obtener las intersecciones relevantes a la unidad de análisis.
+
+Para los datos de edificacion, se realizó la descarga correspondiente y su reducción para su procesamiento en Rstudio, donde luego se procedío a realizar las intersecciones relevantes a la unidad de análisis.
+
+Para los demás elementos: el Recorte de las unidades territoriales, los límites jurisdiccionales y los objetos OMS (Calles y Amenidades), se utilizaron códigos de Rstudio, que permitieron la importación y el procesamiento de los datos en las intersecciones relevantes a la unidad de análisis. 
+
+#### Data Visualization | Presentación de los datos
+
+Toda la información procesada se cargó al Drive y relinkeó a los codigos correspondientes de la estructura de datos del Proyecto (Distill) donde se customizó para la vista correspondiente del Blog.
 
 ## Desafios y Hallazgos
 
