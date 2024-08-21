@@ -1,0 +1,242 @@
+---
+title: "Untitled"
+description: |
+  A new article created using the Distill format.
+author:
+  - name: Nora Jones 
+    url: https://example.com/norajones
+    affiliation: Spacely Sprockets
+    affiliation_url: https://example.com/spacelysprokets
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+Un * al final indica que se ha alojado un dato en el ordenador como producto resultante.
+
+### Carga de librerías
+
+```{r}
+library(sf)
+library(mapview)
+library(dplyr)
+library(osmdata)
+library(ggplot2)
+library(leaflet)
+```
+
+# Unidad de trabajo
+
+### Importación de la unidad municipio *
+
+```{r}
+# Define el nombre del municipio con el que deseas exportar
+municipio_name <- "las_talitas"
+```
+
+```{r}
+# Define el nombre del municipio que deseas obtener del dato OSM
+municipio_v <- "Las Talitas, Los Pocitos, Departamento Tafí Viejo, Tucumán, T4103, Argentina"
+```
+
+```{r}
+# Crear la consulta a OSM por los feature "administrative"
+query_municipio <- opq(bbox = municipio_v) %>%
+  add_osm_feature(key = "boundary", value = "administrative") %>%
+  add_osm_feature(key = "name", value = "Las Talitas")
+```
+
+```{r}
+# Obtener los datos en formato sf
+municipio_sf <- osmdata_sf(query_municipio)
+```
+
+```{r}
+# Comprobar si se han obtenido polígonos (limites administrativos)
+if (!is.null(municipio_sf$osm_multipolygons) && nrow(municipio_sf$osm_multipolygons) > 0) {
+  limites_municipio_sf <- municipio_sf$osm_multipolygons
+
+  # Plotear los límites del municipio
+mapview(limites_municipio_sf, label = limites_municipio_sf$name, color = "red", col.regions = "red", alpha.regions = .05)
+  
+} else {
+  print("No se encontraron límites para el municipio especificado.")
+}
+```
+Guardamos el límite municipal utilizando la variable municipio_name y el sufijo "_limite.geojson"
+
+```{r}
+limite_export <- paste0("data/", municipio_name, "_limite.geojson")
+
+st_write(limites_municipio_sf, limite_export, delete_dsn = TRUE)
+```
+
+### visualización del area de importación (bbox) *
+
+```{r}
+# Crear el bbox a partir del municipio
+bbox_municipio <- getbb(municipio_v)
+```
+
+Agregamos una visualización de la BBOX creada ....
+
+```{r}
+library(leaflet)
+
+# Suponiendo que bbox_municipio es un objeto con las coordenadas del municipio
+
+leaflet() %>%
+  addTiles() %>%
+  addRectangles(
+    lng1 = bbox_municipio[1], lat1 = bbox_municipio[2],
+    lng2 = bbox_municipio[3], lat2 = bbox_municipio[4],
+    color = "blue", weight = 3
+  ) %>%
+  addMarkers(
+    lng = mean(c(bbox_municipio[1], bbox_municipio[3])),
+    lat = mean(c(bbox_municipio[2], bbox_municipio[4])),
+    popup = "Centro del municipio"
+  ) %>%
+  setView(lng = mean(c(bbox_municipio[1], bbox_municipio[3])),
+         lat = mean(c(bbox_municipio[2], bbox_municipio[4])),
+         zoom = 13)
+```
+
+-------------------------------------------
+
+# Objetos OSM
+
+### Importación de objetos OSM (bbox): Calles_bboxmunicipio *
+
+Ahora, obtendremos las calles dentro del bbox del municipio
+
+```{r echo=TRUE}
+# Creamos la consulta a OSM para obtener la red vial
+query_vial <- opq(bbox = municipio_v) %>%
+  add_osm_feature(key = "highway")
+```
+
+```{r echo=TRUE}
+# Obtenemos los datos en formato sf
+osm_vial <- osmdata_sf(query_vial)
+```
+
+```{r echo=TRUE}
+# Extraemos las lineas <<<<<<<<<<<<<
+vial <- osm_vial$osm_lines
+```
+
+```{r echo=TRUE}
+# Comprobar si se han obtenido datos
+if (nrow(vial) > 0) {
+  # Crear un mapa utilizando leaflet
+  leaflet(data = vial) %>%
+    addTiles() %>%
+    addPolylines(color = "blue", weight = 2)
+} else {
+  print("No se encontraron objetos para el municipio especificado.")
+}
+```
+
+Guardamos el objeto vial utilizando la variable municipio_name y el sufijo "_vial_bbox.geojson"
+
+```{r}
+vial_export <- paste0("data/", municipio_name, "_vial_bbox.geojson")
+
+st_write(vial, vial_export, delete_dsn = TRUE)
+```
+
+### Importación de objetos OSM (bbox): Amenities_bbox municipio * AAAA
+
+
+Ahora, obtendremos los amenity dentro del bbox del municipio
+
+```{r echo=TRUE}
+# Creamos la consulta a OSM para obtener los amenity
+query_amenity <- opq(bbox = municipio_v) %>%
+  add_osm_feature(key = "amenity")
+```
+
+```{r echo=TRUE}
+# Obtenemos los datos en formato sf
+osm_amenity <- osmdata_sf(query_amenity)
+```
+
+```{r echo=TRUE}
+# Extraemos las lineas <<<<<<<<<<<<<
+amenity <- osm_amenity$osm_points
+```
+
+```{r echo=TRUE}
+# Comprobar si se han obtenido datos
+if (nrow(amenity) > 0) {
+  # Crear un mapa utilizando leaflet
+  leaflet(data = amenity) %>%
+    addTiles() %>%
+    addCircleMarkers(radius = 5, color = "red", stroke = FALSE, fillOpacity = 0.7, 
+                     label = ~paste(amenity, ": ", name)) %>%
+    addPopups(~st_coordinates(geometry)[,1], ~st_coordinates(geometry)[,2], ~paste(amenity))
+} else {
+  print("No se encontraron objetos para el municipio especificado.")
+}
+```
+
+Guardamos el objeto amenity utilizando la variable municipio_name y el sufijo "_amenity.geojson"
+
+```{r}
+amenity_export <- paste0("data/", municipio_name, "_amenity_bbox.geojson")
+
+st_write(amenity, amenity_export, delete_dsn = TRUE)
+```
+
+--------------------------------------------------------------
+
+### Intersección de objetos OSM (Municipio): vial_municipio *
+
+La interescción se realiza y guarda en Qgis con el nombre munipio_vial.geojson
+
+```{r}
+vial_munipio <- st_read("data/las_talitas_vial.geojson")
+```
+```{r}
+mapview(vial_munipio, label = vial_munipio$name, color = "blue", col.regions = "blue", alpha.regions = .05) + mapview(limites_municipio_sf, label = limites_municipio_sf$name, color = "red", col.regions = "red", alpha.regions = .05)
+```
+
+### Intersección de objetos OSM (Municipio): Amenities_municipio *
+
+La interescción se realiza y guarda en Qgis con el nombre munipio_amenity.geojson
+
+```{r}
+amenity_munipio <- st_read("data/las_talitas_amenity.geojson")
+```
+
+```{r}
+mapview(amenity_munipio, label = amenity_munipio$name, color = "blue", col.regions = "blue", alpha.regions = .05) + mapview(limites_municipio_sf, label = limites_municipio_sf$name, color = "red", col.regions = "red", alpha.regions = .05)
+```
+
+-----------------------------
+
+# Objetos alojados en el ordenador
+
+### Importación e intersección de capa parcelaria (bbox): parecelas_bboxmunicipio *
+
+### Importación  e intersección de capa parcelaria (municipio): parecelas_municipio *
+
+------------------
+
+### Importación e intersección de capas edificación (bbox): parecelas_bboxmunicipio *
+
+### Importación  e intersección de capas edificación (municipio): parecelas_municipio *
+
+-----------------
+
+# Visualizaciones:
+
+### GGplot: s/bbox | nube de puntos de edificaicón + estructura vial + parcelario + aménitis. Vista Online en blog
+
+### GGplot: s/bbox | poligonos de edificación + estructura vial + parcelario + aménitis. Descarga Online o PDF *
+
+
+### Leaflet o Mapviwe: s/Municipio | poligonos de edificación + estructura vial + parcelario + aménitis. Vista Online en blog
+
+
+

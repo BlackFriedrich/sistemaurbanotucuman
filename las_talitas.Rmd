@@ -1,0 +1,121 @@
+---
+title: "Untitled"
+description: |
+  A new article created using the Distill format.
+author:
+  - name: Federico Córdoba 
+    url: https://blackfriedrich.github.io/spatialdataportal/blackfriedrich.html
+    affiliation: OFUT-FAU-UNT
+    affiliation_url: https://www.observatoriofau.com.ar/
+date: "`r Sys.Date()`"
+output: distill::distill_article
+---
+
+```{r}
+#Cargamos las librerias
+library(sf)
+library(mapview)
+library(dplyr)
+library(osmdata)
+library(ggplot2)
+library(leaflet)
+library(tidyverse)
+```
+
+```{r}
+# Define el nombre del municipio con el que deseas exportar
+municipio_name <- "Las Talitas"
+```
+
+
+```{r}
+#Cargamos la información
+
+limite_municipal <- st_read("https://drive.google.com/uc?export=download&id=1chXHr_hJF5EPwAiUatT_rw78OaLE_MaX")
+
+
+
+# bbox
+buildings_bbox <- read_csv("https://drive.google.com/uc?export=download&id=1Asf9Dl73Ng8EK9BL8ezjYIaSlHwgCcLi")
+
+vial_bbox <- st_read("https://drive.google.com/uc?export=download&id=1xGm6YfcZmVt_dYhtJw60lnfS-8vBlSVA")
+
+amenity_bbox <- st_read("https://drive.google.com/uc?export=download&id=1OjnnkcWYgCHO40hZcBrFrgwsKcGAOy2v")
+
+
+
+#Sólo del municipio
+
+buildings <- read_csv("https://drive.google.com/uc?export=download&id=19BIhBUXnRuDEGM_n98BGeHFmRolMg-ly")
+
+vial <- st_read("https://drive.google.com/uc?export=download&id=1hj8vXxC_Gr-kK2AIVZVRprNXEqIanRz8")
+
+amenity <- st_read("https://drive.google.com/uc?export=download&id=18cQwojuIMM0TIJGTUHBR5mfAxELaqRxI")
+
+parcelas <- st_read("https://drive.google.com/uc?export=download&id=1fZikJD3rYCJo3dUuPnJEsp_K19mTzKlc")
+```
+
+
+
+```{r}
+ggplot() +
+  geom_sf(data = limite_municipal, fill = "lightblue", color = "darkblue") +
+  geom_point(data = buildings_bbox, aes(x = longitude, y = latitude)) +
+  
+  coord_sf() +  # Asegurarse de que las coordenadas sean manejadas correctamente
+  ggtitle("superficie edificada de la unidad municipio") +
+  theme_minimal()
+```
+
+
+```{r}
+ggplot() +
+  geom_sf(data = limite_municipal, fill = "grey", color = "black", linetype = "dashed") +
+  geom_point(data = buildings_bbox, aes(x = longitude, y = latitude), color = "black", size = 0.2) +
+  geom_sf(data = vial, color = "darkred", linetype = "solid") +
+  geom_sf(data = amenity_bbox, color = "blue", size = 2, shape = 17) +
+  coord_sf() +
+  ggtitle("Análisis espacial de la unidad municipio") +
+  labs(color = "Elementos") +
+  scale_color_manual(values = c("gray" = "Edificios", "red" = "Puntos extra", "black" = "Líneas extra")) +
+  theme_minimal()
+```
+
+```{r}
+str(buildings)
+```
+link al mapa en A3
+
+
+
+mapa movil
+
+```{r}
+mapview(parcelas, label = parcelas$name, color = "red", col.regions = "red", alpha.regions = .05)
+```
+
+
+
+
+leaflet() %>%
+  addTiles() %>%  
+  addPolygons(data = limite_municipal, 
+             fillColor = "lightblue",
+             color = "darkblue",
+             weight = 2) %>%
+  addCircles(data = buildings, 
+            radius = 5,
+            color = "gray",
+            fillOpacity = 0.8) %>%
+  addCircles(data = amenity, 
+            radius = 5, 
+            color = "red", 
+            fillOpacity = 0.8) %>%
+  addPolylines(data = vial, 
+              color = "black",
+              weight = 2)
+
+
+
+
+
